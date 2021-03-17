@@ -24,7 +24,49 @@ const Home = {
   data:() => {
     return{
     products,
+    searchKey: '',
+    liked : [ ],
+    cart:[],
   }
+  },
+  computed:{
+    filteredList(){
+      return this.products.filter((product) => {
+        return product.description.toLowerCase().includes(this.searchKey.toLowerCase());
+      })
+    },
+    getLikeCookie(){
+      let cookieValue = JSON.parse($cookies.get('like'));
+      cookieValue == null ? this.liked = [] : this.liked = cookieValue
+    }
+  },
+  methods: {
+    setLikeCookie(){
+      document.addEventListener('input', () => {
+        setTimeout(()=> {
+        $cookies.set('like', JSON.stringify(this.liked));
+      }, 300);
+    })
+    },
+    addToCart(product){
+      // check if already in array and
+      for (let i = 0; i < this.cart.length; i++) {
+        if( this.cart[i].id === product.id ){
+          return this.cart[i].quantity++
+        };
+        
+      }
+      this.cart.push({
+        id:product.id,
+        img: product.img,
+        description: product.description,
+        price : product.price,
+        quantity: 1,
+      })
+    }
+  },
+  mounted: () => {
+    this.getLikeCookie;
   }
 }
 const UserSettings = {
