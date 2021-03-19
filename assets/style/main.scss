@@ -7,6 +7,7 @@
   list-style: none;
   font-family: "Ubuntu", sans-serif;
 }
+
 body {
   margin: 0 auto;
   background: rgba(254, 254, 254, 0.8);
@@ -14,19 +15,23 @@ body {
   color: #333;
   overflow-x: hidden;
 }
+
 h1 {
   padding: 6rem 0 0 2.4rem;
 }
+
 a,
 a:visited {
   color: #333;
 }
+
 button {
   border: none;
   background: none;
   outline: none;
   cursor: pointer;
 }
+
 nav {
   padding: 0.8rem 2.4rem;
   background: rgba(255, 255, 255, 0.97);
@@ -64,6 +69,7 @@ nav {
           position: relative;
         }
       }
+
       #nav-not {
         height: 8px;
         width: 8px;
@@ -75,10 +81,12 @@ nav {
         transition: 0.6s;
         transform: translate(-4px, -1px);
       }
+
       i {
         transition: 0.25s;
         cursor: pointer;
       }
+
       i:hover {
         color: rgba(34, 34, 34, 0.65);
       }
@@ -155,6 +163,7 @@ nav {
             transition: 0.4s ease;
           }
         }
+
         .card-text {
           display: flex;
           align-items: center;
@@ -172,6 +181,7 @@ nav {
             font-size: 1.2rem;
             padding-right: 4px;
           }
+
           span {
             background: #2eb7eb;
             font-weight: bold;
@@ -180,6 +190,7 @@ nav {
             border-radius: 4px;
           }
         }
+
         .card-icons {
           display: flex;
           align-items: center;
@@ -195,9 +206,11 @@ nav {
               animation: scaler 0.8s infinite linear;
             }
           }
+
           .fa-heart:hover {
             color: rgba(251, 38, 38, 0.5);
           }
+
           .fa-shopping-cart {
             font-size: 16px;
             color: #2eb7eb;
@@ -206,11 +219,12 @@ nav {
               filter: brightness(125%);
             }
           }
+
           .like-container {
             input {
               display: none;
 
-              &:checked + label i {
+              &:checked+label i {
                 color: rgb(251, 38, 38);
                 animation: heart 1.3s forwards ease;
 
@@ -219,10 +233,12 @@ nav {
                     filter: hue-rotate(0deg);
                     transform: scale(1);
                   }
+
                   50% {
                     filter: hue-rotate(-270deg);
                     transform: scale(1.3);
                   }
+
                   100% {
                     filter: hue-rotate(0deg);
                     transform: scale(1);
@@ -233,11 +249,13 @@ nav {
           }
         }
       }
+
       .no-result {
         margin: 0 4rem 0 0.4rem;
       }
     }
   }
+
   .shopping-cart {
     transition: 0.4s ease;
     background: #2eb7eb;
@@ -254,6 +272,7 @@ nav {
       color: #333;
       text-align: center;
     }
+
     .item-group {
       max-height: 400px;
       overflow-y: scroll;
@@ -263,6 +282,7 @@ nav {
       &::-webkit-scrollbar {
         display: none;
       }
+
       // &::-webkit-scrollbar {
       //   width: 2px;
       // }
@@ -282,7 +302,7 @@ nav {
         display: grid;
         grid-template-columns: 50px 1fr;
         grid-template-rows: 60% 40%;
-        grid-template-areas: 
+        grid-template-areas:
           'a b'
           'a c';
 
@@ -340,10 +360,12 @@ nav {
               }
             }
           }
+
           p {
             transform: translateY(3px);
           }
         }
+
         .item-quantity {
           grid-area: c;
           display: flex;
@@ -354,6 +376,7 @@ nav {
           h6 {
             color: #333;
           }
+
           .cart-icons {
             display: flex;
             justify-content: space-between;
@@ -373,13 +396,16 @@ nav {
                   }
                 }
               }
-              &:nth-child(1){
+
+              &:nth-child(1) {
                 @include icon-anim(.2s);
               }
-              &:nth-child(2){
+
+              &:nth-child(2) {
                 @include icon-anim(.4s);
               }
-              &:nth-child(3){
+
+              &:nth-child(3) {
                 @include icon-anim(.6s);
               }
             }
@@ -396,16 +422,18 @@ nav {
               &:hover {
                 background: #222;
                 color: #2eb7eb;
-              }              
+              }
             }
           }
         }
       }
     }
+
     .grand-total {
       h6 {
         color: #333;
       }
+
       .total {
         display: flex;
         justify-content: space-between;
@@ -417,6 +445,7 @@ nav {
         }
       }
     }
+
     .order-button {
       margin: 1rem auto 0;
       width: 100%;
@@ -437,43 +466,54 @@ nav {
           letter-spacing: 6px;
           animation: scaler 1.5s infinite linear;
         }
+
         &:active {
           transform: scale(0.92);
         }
       }
     }
   }
+
   // animations
   .cart-anim {
+
     &-enter-active,
     &-leave-active {
-      transition: 1.3s cubic-bezier(.23,.66,.08,.93);
+      transition: 1.3s cubic-bezier(.23, .66, .08, .93);
       transform: translateX(0px);
     }
+
     &-enter,
     &-leave-to {
       opacity: 0;
       transform: translateX(400px);
     }
   }
+
   .item-anim {
-    &-enter-active, 
+
+    &-enter-active,
     &-leave-active {
-      opacity: 1;
+      transform: scale(1);
       transition: .8s;
     }
-    &-enter,
+
+    &-enter {
+      transition: .8s;
+    }
+
     &-leave-to {
-      opacity: 0;
-      transform: translateY(100px);
-      transition: .7s;
+      transform: scale(0);
+      transition: .3s;
     }
   }
 }
+
 @keyframes scaler {
   50% {
     transform: scale(1.1);
   }
+
   100% {
     transform: scale(1);
   }

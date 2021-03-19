@@ -57,7 +57,7 @@
             <!-- no result -->
             <div v-else-if="filteredList.length===0"><h3>Désolé</h3><p>Aucun résultat trouvé </p></div>
 
-      <!-- cards display -->
+      <!-- cards display in product-->
       <div class="card-cart-container">
         <div class="card-container">
           <div v-for="product in filteredList" class="card">
@@ -95,11 +95,13 @@
               
             </div>
             <!-- cart display -->
+            <transition name="cart-anim">
+
             <div v-if="cart.length > 0" class="shopping-cart" id="shopping-cart">
               <h2>Panier</h2>
 
-              <div class="item-group">
-                  <div v-for="product in cart" class="item">
+              <transition-group name="item-anim" tag="div" class="item-group">
+                  <div v-for="product,id in cart" v-bind:key="product.id" class="item">
 
 
                       <div class="img-container">
@@ -116,13 +118,13 @@
                       
 
                       <div class="cart-icons">
-                        <button>
+                        <button @click="cartPlusOne(product)">
                           <i class="fa fa-plus"></i>
                         </button>
-                        <button>
+                        <button @click="cartMinusOne(product, id)">
                           <i class="fa fa-minus"></i>
                         </button>
-                        <button>
+                        <button @click="cartRemoveItem(id)">
                           <i class="fa fa-trash"></i>
                         </button>
                       </div>
@@ -132,8 +134,18 @@
                 
                   </div>
 
+              </transition-group>
+              <div class="grand-total">
+                <div class="total">
+                  <h2>Total</h2>
+                  <h2>{{cartTotalAmount}}€</h2>
+
+                </div>
+                <h6>Total articles : {{itemTotalAmount}}</h6>
               </div>
             </div>
+          </transition>
+
       </div>
     
   </div>
@@ -144,8 +156,8 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
   <!-- import vue routeur -->
   <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<!-- cookis plugins -->
-<script src="https://unpkg.com/vue-cookies@1.7.4/vue-cookies.js"></script>
+  <!-- cookis plugins -->
+  <script src="https://unpkg.com/vue-cookies@1.7.4/vue-cookies.js"></script>
 
   <script src="./assets/js/vue.js"></script>
   <script src="./assets/js/script.js"></script>
